@@ -8,16 +8,24 @@ using System.Runtime.CompilerServices;
 
 // - CODES - //
 
-string code = File.ReadAllText(".\\Programs\\online-scripts\\hello-world.bf");
-//string code = File.ReadAllText(".\\Programs\\Benjamin5678\\password.bf");
-//string code = File.ReadAllText(".\\Programs\\Benjamin5678\\multiply-preserve.bf");
+string program = "/online-scripts/hello-world.bf";
+//string program = "/online-scripts/tic-tac-toe.bf";
 
-//User variables
+//string program = "/Benjamin5678/password.bf"; // My magnum opus. Type the password to get a ":)"
+//string program = "/Benjamin5678/multiply-preserve.bf";
+
+
+string programsPath = "../../../../programs"; // You may have to change this depending on where your executable is
+string code = File.ReadAllText(programsPath + program); // You may also
+
+
+
+//User Variables
 int memorySize = 30000;
 int startingPosition = 0;
 bool wrapping = false;
 
-bool useDebug = true; //If enabled: start debugging in your program with #, turn off with !
+bool useDebug = false; //If enabled: start debugging in your program with #, turn off with !
 
 int[] printStateRange = [0, 15]; //From which cell to which cell is printed by the printState method
 
@@ -71,24 +79,18 @@ void run()
             break;
 
         case ',': //Take Input
-            if (debug)
-            {
-                Console.Write("Input: ");
-            }
+            if (debug) { Console.Write("Input: "); }
             char input = Console.ReadKey().KeyChar;
-            if (debug)
-            {
-                Console.WriteLine();
-            }
+            if (debug) { Console.WriteLine(); }
             tape[cursor] = (byte)input;
             break;
 
         case '.': //Print Output
-            if (debug)
+            if (debug) 
             {
                 Console.WriteLine("Output: " + (char)tape[cursor]);
             }
-            else
+            else 
             {
                 Console.Write((char)tape[cursor]);
             }
@@ -125,6 +127,12 @@ void run()
 
     codePointer++;
 }
+
+
+//I'm not sure if this is the best way to do this.
+//Another way would be to create an startLoop() and endLoop() method and have both [ and ] recognizable by run()
+//startLoop() would check if tape[cursor] = 0 then find corresponding ]
+//endLoop() would check if tape[cursor] != 0 then find corresponding [
 
 void loop()
 {
@@ -171,6 +179,7 @@ void loop()
     }
 }
 
+
 void printState()
 {
     //PrintCode
@@ -208,6 +217,8 @@ void printState()
     Console.WriteLine("\n");
 }
 
+
+//Might be good idea to implement checking for unmatched loops
 string postProcess(string code)
 {
     string processedText = "";
