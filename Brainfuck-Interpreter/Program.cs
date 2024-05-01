@@ -8,11 +8,12 @@ using System.Runtime.CompilerServices;
 
 // - CODES - //
 
-string program = "/online-scripts/hello-world.bf";
+//string program = "/online-scripts/hello-world.bf";
 //string program = "/online-scripts/tic-tac-toe.bf";
 
 //string program = "/Benjamin5678/password.bf"; // My magnum opus. Type the password to get a ":)"
 //string program = "/Benjamin5678/multiply-preserve.bf";
+string program = "/Benjamin5678/divide.bf";
 
 
 string programsPath = "../../../../programs"; // You may have to change this depending on where your executable is
